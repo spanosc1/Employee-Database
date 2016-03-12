@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		var employeeData = new Firebase("https://saturday-data.firebaseio.com/");
+		$(".submit").on('click', function {
+			var name = $("#employeeName").val();
+			var role = $("#employeeRole").val();
+			var start = "01/12/16";//$("#startDate").val();
+			var rate = $("#monthlyRate").val();
+			var newRow = $('<tr>');
+			var nameData = $('<td>');
+			var roleData = $('<td>');
+			var startData = $('<td>');
+			var rateData = $('<td>');
+			nameData.text(name);
+			roleData.text(role);
+			startData.text(start);
+			rateData.text(rate);
+			var monthsWorked = $('<td>');
+			var currentTime = new Date();
+			var dateMonths = start.substr(3, 2);
+			var dateYears = start.substr(6, 2);
+			console.log(dateYears);
+			var month = currentTime.getMonth() + 1;
+			console.log(month);
+			var year = currentTime.getFullYear();
+			year = year + "";
+			var yearTwoDigits = year.substr(2, 2);
+			console.log(yearTwoDigits);
+			if(dateYears > yearTwoDigits)
+			{
+				console.log("year is in 1900s");
+				var monthDiff = month - dateMonths;
+				if(monthDiff < 0)
+				{
+					monthDiff = 12 + monthDiff;
+				}
+			}
+			else
+			{
+				console.log("year is in 2000s");
+			}
+		});
+	</script>
+</body>
+</html>
